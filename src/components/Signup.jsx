@@ -1,5 +1,5 @@
 import React, { useState }from "react";
-import axios from "react";
+import axios from "axios";
 
 export default function Signup() {
     const [username, setUsername] = useState('');
@@ -14,11 +14,12 @@ export default function Signup() {
     }
 
     const handleSubmit = async(e) => {
+        e.preventDefault();
         const data = {username, password};
 
         try {
-            const response = await axios.useOptimistic("http://localhost:5000/signup", data)
-            if(response.status = 201) {
+            const response = await axios.post("http://localhost:5000/auth/signup", data)
+            if(response.status == 201) {
                 const { token } = response.data;
                 localStorage.setItem("token", token);
                 alert("Successful Log in");
@@ -32,7 +33,7 @@ export default function Signup() {
 
     }   
     return (
-        <form onSubmit = {handleData}>
+        <form onSubmit = {handleSubmit}>
             <label>Username</label>
             <input
                 id = "username"
@@ -46,9 +47,12 @@ export default function Signup() {
             id = "password"
             type = "password"
             value = {password}
-            onChange = {setPassword}
+            onChange = {handlePassword}
             required
             />
+            <button type = "submit">
+                Sign up
+            </button>
         </form>
     )
 }

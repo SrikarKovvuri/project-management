@@ -23,7 +23,7 @@ def login():
     return jsonify({
         "message": "Login successful",
         "token": token
-    }), 200
+    }), 201
 
 
 @auth_bp.route('/signup', methods=['POST'])
