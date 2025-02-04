@@ -16,7 +16,7 @@ def get_all_projects():
         "due_date": project.due_date
     } for project in projects]
 
-    return jsonify(result), 200
+    return jsonify(result), 201
 
 # Get a single project by ID
 @operations.route('/projects/<int:project_id>', methods=['GET'])
@@ -43,7 +43,7 @@ def add_project():
     description = data.get("description")
     due_date = data.get("due_date")
 
-    user_id = get_jwt_identity()  # Get the logged-in user's ID
+    user_id = get_jwt_identity()  
 
     if not title or not description:
         return jsonify({"error": "Title and description are required"}), 400
@@ -87,7 +87,7 @@ def add_task(project_id):
 
     return jsonify({"message": "Task added successfully", "id": new_task.id}), 201
 
-# Update a project
+
 @operations.route('/projects/<int:project_id>', methods=['PUT'])
 @jwt_required()
 def update_project(project_id):
@@ -105,7 +105,7 @@ def update_project(project_id):
 
     return jsonify({"message": "Project updated successfully"}), 200
 
-# Update a task
+
 @operations.route('/tasks/<int:task_id>', methods=['PUT'])
 @jwt_required()
 def update_task(task_id):
@@ -121,7 +121,6 @@ def update_task(task_id):
 
     return jsonify({"message": "Task updated successfully"}), 200
 
-# Delete a project
 @operations.route('/projects/<int:project_id>', methods=['DELETE'])
 @jwt_required()
 def delete_project(project_id):
