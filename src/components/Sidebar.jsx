@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Sidebar({ projects }) {
+export default function Sidebar({ projects, setProjects }) {
   return (
     <div className="sidebar">
       <h2>Projects</h2>
