@@ -1,11 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-
 export const ProjectContext = createContext();
 
 export function ProjectProvider({ children }) {
     const [projects, setProjects] = useState([]);
+    const [tasks, setTasks] = useState({});
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -21,10 +21,10 @@ export function ProjectProvider({ children }) {
         };
 
         fetchProjects();
-    }, []);
+    }, [projects]);
 
     return (
-        <ProjectContext.Provider value={{ projects, setProjects }}>
+        <ProjectContext.Provider value={{ projects, setProjects, tasks, setTasks }}>
             {children}
         </ProjectContext.Provider>
     );

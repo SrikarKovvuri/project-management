@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Project({ setProjects }) {
+export default function Project({ setProjects, setShowProjectForm}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // ✅ Prevent default form submission
-
+    e.preventDefault(); 
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -18,7 +17,8 @@ export default function Project({ setProjects }) {
       );
 
       if (response.status === 201) {
-        setProjects((prevProjects) => [response.data, ...prevProjects]); // ✅ Add new project to the sidebar
+        setProjects((prevProjects) => [response.data, ...prevProjects]); 
+        setShowProjectForm(false);
       }
     } catch (error) {
       console.error("Error creating project:", error);
