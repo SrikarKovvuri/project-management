@@ -25,9 +25,11 @@ migrate = Migrate(app, db)
 jwt = JWTManager(app)
 
 app.register_blueprint(auth_bp, url_prefix="/auth")  # Routes now start with `/auth`
-app.register_blueprint(operations, url_prefix="/projects")
+app.register_blueprint(operations)
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
 
 

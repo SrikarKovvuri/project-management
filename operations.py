@@ -16,7 +16,7 @@ def get_all_projects():
         "due_date": project.due_date
     } for project in projects]
 
-    return jsonify(result), 201
+    return jsonify(result), 200
 
 # Get a single project by ID
 @operations.route('/projects/<int:project_id>', methods=['GET'])
@@ -52,7 +52,7 @@ def add_project():
     db.session.add(new_project)
     db.session.commit()
 
-    return jsonify({"message": "Project created successfully", "id": new_project.id}), 201
+    return jsonify({"message": "Project created successfully", "id": new_project.id}), 200
 
 # Get all tasks under a specific project
 @operations.route('/projects/<int:project_id>/tasks', methods=['GET'])
@@ -85,7 +85,7 @@ def add_task(project_id):
     db.session.add(new_task)
     db.session.commit()
 
-    return jsonify({"message": "Task added successfully", "id": new_task.id}), 201
+    return jsonify({"message": "Task added successfully", "id": new_task.id}), 200
 
 
 @operations.route('/projects/<int:project_id>', methods=['PUT'])
@@ -134,7 +134,6 @@ def delete_project(project_id):
 
     return jsonify({"message": "Project deleted successfully"}), 200
 
-# Delete a task
 @operations.route('/tasks/<int:task_id>', methods=['DELETE'])
 @jwt_required()
 def delete_task(task_id):
