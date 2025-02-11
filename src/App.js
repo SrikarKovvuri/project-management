@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path = "/signup" element = {<Signup/>} />
         <Route path = "/login" element = {<Login/>}/>
-        <Route path = "/" element = {isAuthenticated ? <Main/> : <Navigate to = "/Signup"/>} />
+        <Route path = "/" element = {isAuthenticated ? <Main/> : <Navigate to = "/signup"/>} />
       </Routes>
     </Router>
     </ProjectProvider>

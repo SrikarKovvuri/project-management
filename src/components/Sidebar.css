@@ -1,0 +1,81 @@
+/* Sidebar.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+.sidebar {
+  position: fixed;       /* Fix sidebar to the viewport */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 18rem;          /* Uses rem for scalability */
+  background-color: #000; /* Black background */
+  color: #fff;
+  padding: 1.5rem;       /* Scales with font size */
+  box-sizing: border-box;
+  overflow-y: auto;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar button {
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar button:hover {
+  background-color: #555;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  background-color: #111;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar li:hover {
+  background-color: #222;
+}
+
+/* Responsive: On smaller screens, reduce sidebar width */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 15rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+}

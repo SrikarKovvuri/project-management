@@ -1,32 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import { ProjectContext } from "./ProjectContext";
+import "./Project.css"; // Import our custom styles
 
-export default function Project({ setProjects, setShowProjectForm}) {
+export default function Project({ setProjects, setShowProjectForm }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
         "http://localhost:5000/projects",
         { title, description, due_date: dueDate },
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
 
-      if (response.status === 201) {
-        setProjects((prevProjects) => [response.data, ...prevProjects]); 
+      if (response.status === 200) {
+        setProjects((prevProjects) => [response.data, ...prevProjects]);
         setShowProjectForm(false);
       }
     } catch (error) {
-      console.error("Error creating project:", error);
+      console.error("Error creating project:", error.response?.data || error.message);
     }
   };
 
   return (
-    <div>
+    <div className="project-form-container">
       <form onSubmit={handleSubmit}>
         <label>Project Title</label>
         <input
