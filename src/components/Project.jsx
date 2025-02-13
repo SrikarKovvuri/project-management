@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { ProjectContext } from "./ProjectContext";
-import "./Project.css"; // Your styling file for the project form
+import "./Project.css"; 
 
 export default function Project({ setProjects, setShowProjectForm, setSelectedProject }) {
   const [title, setTitle] = useState("");
@@ -25,7 +25,7 @@ export default function Project({ setProjects, setShowProjectForm, setSelectedPr
       if (response.status === 201) {
         const newProject = response.data;
         setProjects((prevProjects) => [newProject, ...prevProjects]);
-        setSelectedProject(newProject); // Immediately select the new project
+        setSelectedProject(newProject); 
         setShowProjectForm(false);
       }
     } catch (error) {

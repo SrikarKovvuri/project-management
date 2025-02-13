@@ -1,13 +1,12 @@
-/* Import a modern sans-serif font */
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 .project-form-container {
   width: 90%;
-  max-width: 800px;          /* Expand to a wider container */
+  max-width: 800px;       
   margin: 2rem auto;
   padding: 2rem 1rem;
   font-family: 'Roboto', sans-serif;
-  /* No extra box-shadow or border - keeping it minimal */
 }
 
 .project-form-container form {
@@ -16,9 +15,9 @@
 }
 
 .project-form-container label {
-  font-size: 1.2rem;         /* Larger labels */
+  font-size: 1.2rem;         
   font-weight: 500;
-  color: #5a3e36;            /* Warm brown color */
+  color: #5a3e36;            
   margin-bottom: 0.5rem;
 }
 
@@ -26,9 +25,9 @@
 .project-form-container input[type="date"] {
   font-size: 1.1rem;
   padding: 0.75rem 0;
-  background-color: #f5f5f5; /* Light grayish background */
-  border: none;              /* Remove full borders */
-  border-bottom: 2px solid #ccc; /* Subtle bottom border */
+  background-color: #f5f5f5; 
+  border: none;              
+  border-bottom: 2px solid #ccc; 
   margin-bottom: 1.5rem;
   outline: none;
   transition: border-color 0.3s ease;
@@ -41,8 +40,8 @@
 }
 
 .project-form-container button {
-  background-color: #000;    /* Black background */
-  color: #fff;               /* White text */
+  background-color: #000;    
+  color: #fff;               
   border: none;
   padding: 1rem;
   font-size: 1.1rem;
@@ -55,6 +54,6 @@
 }
 
 .project-form-container button:hover {
-  background-color: #333;    /* Darker on hover */
-  transform: scale(1.02);    /* Slight scale effect */
+  background-color: #333;    
+  transform: scale(1.02);    
 }

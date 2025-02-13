@@ -1,58 +1,43 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../App";
+import "./Auth.css"; // ✅ Import CSS for styling
+import { Link } from "react-router-dom";
 
-export default function Signup() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+export default function Login() {
+  const { login } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleUsername = (e) => {
-        setUsername(e.target.value);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/auth/signup", {
+        username,
+        password,
+      });
+
+      if (response.status === 201) {
+        login(response.data.token);
+        alert("Successful Sig up");
+        window.location.href = "/";
+      }
+    } catch (error) {
+      alert(error.response?.data?.error || "Error during login. Please try again.");
     }
+  };
 
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    }
-
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        const data = {username, password};
-
-        try {
-            const response = await axios.post("http://localhost:5000/auth/signup", data)
-            if(response.status == 201) {
-                const { token } = response.data;
-                localStorage.setItem("token", token);
-                alert("Successful Log in");
-                window.location.href = "/"
-            }
-        }
-        catch(error) {
-            console.error(error.response?.data || error.message);
-            alert(error.response?.data?.error || "Error during login. Please try again.");
-        }
-
-    }   
-    return (
-        <form onSubmit = {handleSubmit}>
-            <label>Username</label>
-            <input
-                id = "username"
-                type = "text"
-                value = {username}
-                onChange = {handleUsername}
-                required
-            />
-            <label>Password</label>
-            <input
-            id = "password"
-            type = "password"
-            value = {password}
-            onChange = {handlePassword}
-            required
-            />
-            <button type = "submit">
-                Sign up
-            </button>
-        </form>
-    )
+  return (
+    <div className="auth-container">
+      <form onSubmit={handleSubmit} className="auth-form">
+        <h2>Sign up</h2>
+        <label>Username</label>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        <label>Password</label>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <button type="submit">Sign up</button>
+        <p className="auth-switch">Already have an account? <Link to="/login">Log in</Link></p>
+      </form>
+    </div>
+  );
 }

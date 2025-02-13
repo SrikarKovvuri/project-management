@@ -19,12 +19,19 @@ export default function Main() {
     }
   }, [selectedProject]);
 
+  useEffect(() => {
+    if (!selectedProject && projects.length > 0) {
+      setSelectedProject(projects[0]);
+    }
+  }, [projects, selectedProject]);
+
   const fetchTasks = async (projectId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:5000/projects/${projectId}/tasks`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `http://localhost:5000/projects/${projectId}/tasks`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       if (response.status === 200) {
         setTasks((prevTasks) => ({ ...prevTasks, [projectId]: response.data }));
       }
@@ -38,9 +45,7 @@ export default function Main() {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
         `http://localhost:5000/projects/${projectToDelete.id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.status === 200) {
         const newProjects = projects.filter(
@@ -52,7 +57,7 @@ export default function Main() {
         }
       }
     } catch (error) {
-      console.error("❌ Error deleting project:", error);
+      console.error(" Error deleting project:", error);
       alert("Failed to delete project.");
     }
   };
@@ -77,7 +82,10 @@ export default function Main() {
 
   return (
     <div className="main-container">
-      <Sidebar setShowProjectForm={setShowProjectForm} setSelectedProject={setSelectedProject} />
+      <Sidebar 
+        setShowProjectForm={setShowProjectForm} 
+        setSelectedProject={setSelectedProject} 
+      />
       {showProjectForm ? (
         <Project 
           setProjects={setProjects} 
@@ -86,26 +94,33 @@ export default function Main() {
         />
       ) : selectedProject ? (
         <div className="content">
-          <button className="delete-btn" onClick={() => deleteProject(selectedProject)}>
+          <button 
+            className="delete-btn" 
+            onClick={() => deleteProject(selectedProject)}
+          >
             Delete
           </button>
           <h1>{selectedProject?.title}</h1>
           <p className="due-date">{selectedProject?.due_date}</p>
           <p className="description">{selectedProject?.description}</p>
-          <div>
+          <div className="add-task-container">
             <input 
               type="text"
               value={taskText}
               onChange={(e) => setTaskText(e.target.value)}
               placeholder="Add new task..."
             />
-            <button onClick={addTask}>Add Task</button>
-            {selectedProject && tasks[selectedProject.id] && tasks[selectedProject.id].length > 0 ? (
-              <Task tasks={tasks[selectedProject.id]} selectedProject={selectedProject} fetchTasks={fetchTasks} />
-            ) : (
-              <p>No tasks at this time</p>
-            )}
+            <button className="add-task" onClick={addTask}>Add Task</button>
           </div>
+          {selectedProject && tasks[selectedProject.id] && tasks[selectedProject.id].length > 0 ? (
+            <Task 
+              tasks={tasks[selectedProject.id]} 
+              selectedProject={selectedProject} 
+              fetchTasks={fetchTasks} 
+            />
+          ) : (
+            <p>No tasks at this time</p>
+          )}
         </div>
       ) : (
         <div className="content">

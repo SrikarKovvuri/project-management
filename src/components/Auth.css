@@ -1,0 +1,84 @@
+/* Auth Page Container */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212; /* Dark background */
+  }
+  
+  /* Login/Signup Form */
+  .auth-form {
+    background: #1e1e1e; /* Dark gray */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Headings */
+  .auth-form h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Labels */
+  .auth-form label {
+    color: #b3b3b3; /* Light gray */
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  /* Input Fields */
+  .auth-form input {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #444;
+    color: white;
+    padding: 10px;
+    margin-bottom: 1rem;
+    font-size: 16px;
+    transition: border-bottom 0.3s;
+  }
+  
+  .auth-form input:focus {
+    border-bottom: 2px solid #007bff;
+    outline: none;
+  }
+  
+  /* Submit Button */
+  .auth-form button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .auth-form button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  /* Switch between Login & Signup */
+  .auth-switch {
+    text-align: center;
+    margin-top: 1rem;
+    color: #b3b3b3;
+  }
+  
+  .auth-switch a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .auth-switch a:hover {
+    text-decoration: underline;
+  }
+  

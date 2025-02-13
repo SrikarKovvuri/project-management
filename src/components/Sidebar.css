@@ -1,16 +1,16 @@
-/* Sidebar.css */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 .sidebar {
-  position: fixed;       /* Fix sidebar to the viewport */
+  position: fixed;       
   top: 0;
   left: 0;
   bottom: 0;
-  width: 18rem;          /* Uses rem for scalability */
-  background-color: #000; /* Black background */
+  width: 18rem;          
+  background-color: #000; 
   color: #fff;
-  padding: 1.5rem;       /* Scales with font size */
+  padding: 1.5rem;      
   box-sizing: border-box;
   overflow-y: auto;
   font-family: 'Roboto', sans-serif;
@@ -64,7 +64,6 @@
   background-color: #222;
 }
 
-/* Responsive: On smaller screens, reduce sidebar width */
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 15rem;

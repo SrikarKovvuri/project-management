@@ -7,7 +7,8 @@ operations = Blueprint("operations", __name__)
 @operations.route('/projects', methods=['GET'])
 @jwt_required()
 def get_all_projects():
-    projects = Project.query.all()
+    user_id = get_jwt_identity()
+    projects = Project.query.filter_by(user_id = user_id).all()
     result = [{
         "id": project.id,
         "title": project.title,
@@ -20,7 +21,8 @@ def get_all_projects():
 @operations.route('/projects/<int:project_id>', methods=['GET'])
 @jwt_required()
 def get_project(project_id):
-    project = Project.query.get(project_id)
+    user_id = get_jwt_identity()
+    project = Project.query.filter_by(id = project_id, user_id = user_id).first()
     
     if not project:
         return jsonify({"error": "Project not found"}), 404

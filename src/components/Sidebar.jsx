@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ProjectContext } from "./ProjectContext";
-import "./Sidebar.css"; // Import your custom CSS for the sidebar
+import "./Sidebar.css"; 
 
 export default function Sidebar({ setShowProjectForm, setSelectedProject }) {
   const { projects } = useContext(ProjectContext);
