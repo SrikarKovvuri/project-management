@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { ProjectContext } from "./ProjectContext";
-import "./Project.css"; // Import our custom styles
+import "./Project.css"; // Your styling file for the project form
 
-export default function Project({ setProjects, setShowProjectForm }) {
+export default function Project({ setProjects, setShowProjectForm, setSelectedProject }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
-
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -22,9 +22,10 @@ export default function Project({ setProjects, setShowProjectForm }) {
           },
         }
       );
-
-      if (response.status === 200) {
-        setProjects((prevProjects) => [response.data, ...prevProjects]);
+      if (response.status === 201) {
+        const newProject = response.data;
+        setProjects((prevProjects) => [newProject, ...prevProjects]);
+        setSelectedProject(newProject); // Immediately select the new project
         setShowProjectForm(false);
       }
     } catch (error) {

@@ -4,7 +4,6 @@ from models import db, Project, Task
 
 operations = Blueprint("operations", __name__)
 
-# Get all projects
 @operations.route('/projects', methods=['GET'])
 @jwt_required()
 def get_all_projects():
@@ -18,7 +17,6 @@ def get_all_projects():
 
     return jsonify(result), 200
 
-# Get a single project by ID
 @operations.route('/projects/<int:project_id>', methods=['GET'])
 @jwt_required()
 def get_project(project_id):
@@ -34,7 +32,6 @@ def get_project(project_id):
         "due_date": project.due_date
     }), 200
 
-# Add a new project
 @operations.route('/projects', methods=['POST'])
 @jwt_required()
 def add_project():
@@ -42,7 +39,6 @@ def add_project():
     title = data.get("title")
     description = data.get("description")
     due_date = data.get("due_date")
-
     user_id = get_jwt_identity()  
 
     if not title or not description:
@@ -52,9 +48,18 @@ def add_project():
     db.session.add(new_project)
     db.session.commit()
 
+    return jsonify({
+        "message": "Project created successfully",
+        "id": new_project.id,
+        "title": new_project.title,
+        "description": new_project.description,
+        "due_date": new_project.due_date,
+        "user_id": new_project.user_id
+    }), 201
+
+
     return jsonify({"message": "Project created successfully", "id": new_project.id}), 200
 
-# Get all tasks under a specific project
 @operations.route('/projects/<int:project_id>/tasks', methods=['GET'])
 @jwt_required()
 def get_all_tasks_under_project(project_id):
@@ -67,7 +72,6 @@ def get_all_tasks_under_project(project_id):
     
     return jsonify(result), 200
 
-# Add a task to a project
 @operations.route('/projects/<int:project_id>/tasks', methods=['POST'])
 @jwt_required()
 def add_task(project_id):
@@ -81,7 +85,8 @@ def add_task(project_id):
     if not project:
         return jsonify({"error": "Project not found"}), 404
 
-    new_task = Task(text=text, project_id=project_id)
+    user_id = get_jwt_identity()
+    new_task = Task(text=text, project_id=project_id, user_id = user_id)
     db.session.add(new_task)
     db.session.commit()
 

@@ -1,56 +1,105 @@
-/* Import font */
+/* Main.css */
+
+/* Import a modern sans-serif font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 .main-container {
   display: flex;
-  flex-direction: column;
-  margin-left: 18rem;  /* Adjusts for sidebar */
+  /* Sidebar is fixed, so give the main container a left margin equal to the sidebar width (in rem) */
+  margin-left: 18rem; 
   padding: 2rem;
-  background-color: #f8f8f8;  /* Subtle background */
+  background-color: #f0f2f5;
   min-height: 100vh;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
 
+/* Content area (project details) */
 .content {
-  max-width: 60rem;
-  padding: 2rem 0; /* Remove the box but keep spacing */
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex: 1;
+  padding: 2rem;
+  position: relative; /* So we can position the delete button */
+  /* No white box border to keep it minimal */
 }
 
+/* Styling for project title, due date, and description */
 .content h1 {
   font-size: 2.5rem;
   color: #222;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .content .due-date {
   font-size: 1.2rem;
-  color: #999;
-  margin-bottom: 1rem;
+  color: #aaa;  /* Light color for due date */
+  margin-bottom: 1.5rem;
 }
 
 .content .description {
   font-size: 1.4rem;
   color: #444;
   line-height: 1.6;
-  max-width: 50rem;
+  margin-bottom: 2rem;
+}
+
+/* Delete button at the top right corner */
+.delete-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #333;
+  transform: translateY(-2px);
 }
 
 /* Responsive adjustments */
 @media screen and (max-width: 1024px) {
   .main-container {
-    margin-left: 15rem;
+    margin-left: 16rem;
     padding: 1.5rem;
   }
 }
 
 @media screen and (max-width: 768px) {
   .main-container {
-    margin-left: 0; /* Sidebar collapses */
+    margin-left: 0; /* Sidebar might collapse on mobile */
     padding: 1.5rem;
+  }
+  .content h1 {
+    font-size: 2rem;
+  }
+  .content .due-date {
+    font-size: 1rem;
+  }
+  .content .description {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content h1 {
+    font-size: 1.8rem;
+  }
+  .content .due-date {
+    font-size: 0.9rem;
+  }
+  .content .description {
+    font-size: 1rem;
+  }
+  .delete-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
   }
 }

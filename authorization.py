@@ -25,7 +25,6 @@ def login():
         "token": token
     }), 201
 
-
 @auth_bp.route('/signup', methods=['POST'])
 def signup():
     data = request.json
