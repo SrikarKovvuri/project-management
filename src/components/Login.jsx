@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../App";
-import "./Auth.css"; // ✅ Import CSS for styling
+import "./Auth.css"; 
 import { Link } from "react-router-dom";
 
 export default function Login() {

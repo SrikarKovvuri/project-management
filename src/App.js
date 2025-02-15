@@ -5,7 +5,6 @@ import Login from "./components/Login";
 import Main from "./components/Main";
 import { ProjectProvider } from "./components/ProjectContext";
 
-// ✅ Create authentication context
 const AuthContext = createContext();
 
 export function useAuth() {
