@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./Project.css"; 
+import REACT_BASE_URL from "../config";
 
 export default function Project({ setProjects, setShowProjectForm, setSelectedProject }) {
   const [title, setTitle] = useState("");

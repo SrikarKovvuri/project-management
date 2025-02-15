@@ -5,6 +5,7 @@ import Project from "./Project";
 import Task from "./Task";
 import axios from "axios";
 import "./Main.css"; 
+import REACT_BASE_URL from "../config";
 
 export default function Main() {
   const { projects, setProjects } = useContext(ProjectContext);
