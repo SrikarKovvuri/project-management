@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { ProjectContext } from "./ProjectContext";
 import "./Project.css"; 
 
 export default function Project({ setProjects, setShowProjectForm, setSelectedProject }) {
