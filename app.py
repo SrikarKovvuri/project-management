@@ -25,8 +25,9 @@ migrate = Migrate(app, db)
 jwt = JWTManager(app)
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600
 
-app.register_blueprint(auth_bp, url_prefix="/auth")  # Routes now start with `/auth`
+app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(operations)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
