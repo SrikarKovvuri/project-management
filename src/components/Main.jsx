@@ -29,7 +29,7 @@ export default function Main() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:5000/projects/${projectId}/tasks`,
+        `${REACT_BASE_URL}/projects/${projectId}/tasks`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.status === 200) {
@@ -44,7 +44,7 @@ export default function Main() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5000/projects/${projectToDelete.id}`,
+        `${REACT_BASE_URL}/projects/${projectToDelete.id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       if (response.status === 200) {
@@ -67,7 +67,7 @@ export default function Main() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `http://localhost:5000/projects/${selectedProject.id}/tasks`,
+        `${REACT_BASE_URL}/projects/${selectedProject.id}/tasks`,
         { text: taskText },
         { headers: { Authorization: `Bearer ${token}` } }
       );

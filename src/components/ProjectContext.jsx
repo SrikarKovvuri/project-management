@@ -17,7 +17,7 @@ export function ProjectProvider({ children }) {
 
       console.log("🛠️ Fetching Projects with Token:", token);
 
-      const response = await axios.get("http://localhost:5000/projects", {
+      const response = await axios.get(`${REACT_BASE_URL}/projects`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json", 

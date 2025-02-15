@@ -12,7 +12,7 @@ export default function Project({ setProjects, setShowProjectForm, setSelectedPr
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/projects",
+        `${REACT_BASE_URL}/projects`,
         { title, description, due_date: dueDate },
         {
           headers: {

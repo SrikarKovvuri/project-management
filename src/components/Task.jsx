@@ -6,7 +6,7 @@ export default function Task({ tasks, selectedProject, fetchTasks }) {
   const handleClear = async (task_id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/tasks/${task_id}`, {
+      await axios.delete(`${REACT_BASE_URL}/tasks/${task_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchTasks(selectedProject.id);
